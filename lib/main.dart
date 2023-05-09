@@ -26,17 +26,15 @@ class MyApp extends StatelessWidget {
 class MyWidget extends StatelessWidget {
   const MyWidget({Key? key}) : super(key: key);
 
-  final aspectRatio = 1.33;
+  final aspectRatio = 4/3;
   final childWidthFactor = .8;
-  final separatorSpacing = 8;
+  final separatorSpacing = 0;
 
   @override
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
     final itemWidth = deviceWidth * childWidthFactor - separatorSpacing;
     final itemHeight = itemWidth / aspectRatio;
-
-    final carouselItemAspectRatio = itemWidth / itemHeight;
 
     return CarouselSlider.builder(
       itemCount: 2,
@@ -54,7 +52,7 @@ class MyWidget extends StatelessWidget {
       ),
       options: CarouselOptions(
         height: itemHeight,
-        aspectRatio: carouselItemAspectRatio,
+        aspectRatio: aspectRatio,
         initialPage: 0,
         enlargeCenterPage: true,
         enlargeFactor: 0.38,
