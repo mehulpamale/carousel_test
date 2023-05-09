@@ -26,38 +26,30 @@ class MyApp extends StatelessWidget {
 class MyWidget extends StatelessWidget {
   const MyWidget({Key? key}) : super(key: key);
 
-  final aspectRatio = 4/3;
+  final aspectRatio = 4 / 3;
   final childWidthFactor = .8;
-  final separatorSpacing = 0;
+  final separatorSpacing = 8;
 
   @override
   Widget build(BuildContext context) {
-    final deviceWidth = MediaQuery.of(context).size.width;
-    final itemWidth = deviceWidth * childWidthFactor - separatorSpacing;
-    final itemHeight = itemWidth / aspectRatio;
-
     return CarouselSlider.builder(
       itemCount: 2,
-      itemBuilder: (context, index, _) => ColoredBox(
-        color: Colors.red,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: separatorSpacing / 2),
-          child: AspectRatio(
-            aspectRatio: aspectRatio,
-            child: Image.network(
-              "https://dummyimage.com/400x300/",
-            ),
+      itemBuilder: (context, index, _) => Padding(
+        padding: EdgeInsets.symmetric(horizontal: separatorSpacing / 2),
+        child: AspectRatio(
+          aspectRatio: aspectRatio,
+          child: Image.network(
+            "https://dummyimage.com/400x300/",
           ),
         ),
       ),
       options: CarouselOptions(
-        height: itemHeight,
         aspectRatio: aspectRatio,
         initialPage: 0,
         enlargeCenterPage: true,
         enlargeFactor: 0.38,
         viewportFraction: childWidthFactor,
-        enlargeStrategy: CenterPageEnlargeStrategy.height,
+        enlargeStrategy: CenterPageEnlargeStrategy.zoom,
         clipBehavior: Clip.antiAlias,
       ),
     );
